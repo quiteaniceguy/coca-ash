@@ -6,7 +6,7 @@ REPL_TAGS = ['VB', 'JJ', 'RB']
 
 
 #will permute emotion of sentence to desired emotion???
-def permSentEmo(sentence):    
+def permSentEmo(sentence, emotion_values):    
     tokens = word_tokenize(sentence)
     tagged_text = nltk.pos_tag(tokens)
     for i in range(len(tokens)):
