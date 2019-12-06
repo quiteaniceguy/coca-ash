@@ -2,28 +2,53 @@ import nltk
 from nltk import word_tokenize
 from nltk.corpus import wordnet as wn
 
-#Tokenizes sentences
-sent = "this is my sentence"
-text = word_tokenize(sent)
-#print(nltk.pos_tag(text))
+REPL_TAGS = ['VB', 'JJ', 'RB']
 
 
-test_synset = wn.synsets('talked')
-#print(test_synset)
-#print(test_synset[0].hypernyms())
-#print(test_synset[0].hypernyms()[0].hyponyms())
-def return 
+#will permute emotion of sentence to desired emotion???
+def permSentEmo(sentence):    
+    tokens = word_tokenize(sentence)
+    tagged_text = nltk.pos_tag(tokens)
+    for i in range(len(tokens)):
+        tag = tagged_text[i][1]
+        print(tokens[i] + " tag: " + tag)
+        if(helper_PosToReplace(tag, REPL_TAGS)):
+            print("replace: " + tokens[i] + " tag: " + tag)
+
+   
+    #for tag in tagged_text:
+
+        
+#comes up with possible replacement words
 def replacementWords(word):
-    temp_senset = wn.synsets(word)
+    temp_synset = wn.synsets(word)
     #takes all the hyponyms of the hypernym(only one hypernym
-    temp_hyponyms = test_synset[0].hypernyms()[0].hyponyms()
+    temp_hyponyms = temp_synset[0].hypernyms()[0].hyponyms()
     replWords = []
     for x in temp_hyponyms:
         replWords.append(x.lemmas()[0].name())
 
     return replWords
 
-print(replacementWords('talked'))
+def selectReplWord(words, sentence):
+    return words[0]
+
+def helper_PosToReplace(tag, tags):
+    for pos in tags:
+        if(tag[0:2] == pos):
+            return True
+
+    return False
+
+def testing():
+    tag = 'JJJ'
+    sentence = "I don't like my life, it is long and really hard"
+
+    print(helper_PosToReplace(tag, REPL_TAGS))
+    print(replacementWords('talked'))
+    permSentEmo(sentence)
+
+testing()
 
     
 
