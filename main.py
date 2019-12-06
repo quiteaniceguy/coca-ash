@@ -10,9 +10,9 @@ def permSentEmo(sentence):
     tokens = word_tokenize(sentence)
     tagged_text = nltk.pos_tag(tokens)
     for i in range(len(tokens)):
-        tag = tagged_text[i][1]
-        print(tokens[i] + " tag: " + tag)
+        tag = tagged_text[i][1] 
         if(helper_PosToReplace(tag, REPL_TAGS)):
+            #replace this with however you want to replace the word
             print("replace: " + tokens[i] + " tag: " + tag)
 
    
